@@ -4,8 +4,12 @@ require 'yaml'
 require 'mikutter_plugin_base'
 
 class Env
-  def initialize(cofig)
-    @env = cofig
+  def initialize(config)
+    @env = config
+  end
+
+  def bind
+    binding
   end
 
   def method_missing(name, *args)
@@ -19,19 +23,14 @@ end
 
 class Templating < Mikutter::PluginBase
   def run(plugin)
-    #path = File.exist?(File.expand_path('../config.yaml', __FILE__)) ? 'config.yaml' : 'sample.yaml'
-    #env = Env.new YAML.load(open(File.expand_path("../#{path}", __FILE__)))
-    #@binding = env.__send__ :binding
+    path = File.exist?(File.expand_path('../config.yaml', __FILE__)) ? 'config.yaml' : 'sample.yaml'
+    @env = Env.new YAML.load(open(File.expand_path("../#{path}", __FILE__)))
+  end
 
-    plugin.filter_gui_postbox_post do |box|
-      buff = Plugin.create(:gtk).widgetof(box).widget_post.buffer
-
-      #case buff.text
-      #when /^@null[ \n]+(.+)$/
-      buff.text = rand(1000).to_s
-      #end
-      [box]
-    end
+  def filter_gui_postbox_post(box)
+    buff = Plugin.create(:gtk).widgetof(box).widget_post.buffer
+    buff.text = ERB.new(buff.text).result(@env.bind)
+    [box]
   end
 end
 
