@@ -5,7 +5,7 @@
 
 
 ## Configuration
-`sample.yaml` のように `var name: value` の形で使える変数を `config.yaml` というファイルを作って定義します。
+`sample.yaml` のように `var_name: value` の形で使える変数を `config.yaml` というファイルを作って定義します。
 
 
 ## Usage
@@ -21,7 +21,7 @@ gem 'mikutter_plugin_base'
 
 あとは mikutter のポストボックスで
 ```eruby
-<% 10.times do %><%= s %><% end %>
+<% 10.times do %><%= var_name %><% end %>
 ```
 などテンプレートエンジンを使ってつぶやくことができます。
 
