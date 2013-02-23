@@ -5,7 +5,7 @@
 
 
 ## Configuration
-`sample.yaml` のように `var_name: value` の形で使える変数を `config.yaml` というファイルを作って定義します。
+`sample.yaml` の参考に `var_name: value` という形でテンプレートエンジン内で使う変数を `config.yaml` というファイルを作って定義します。
 
 
 ## Usage
