@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-require 'pry'
 require 'yaml'
 require 'mikutter_plugin_base'
 
