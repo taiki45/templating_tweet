@@ -20,8 +20,8 @@ gem 'mikutter_plugin_base'
 と追加して起動時に `bundle exec ruby mikutter.rb` としてください。
 
 あとは mikutter のポストボックスで
-```eruby
-<% 10.times do %><%= var_name %><% end %>
+```mustache
+{{ var_name }}your tweet body{{ another_var_name }}
 ```
 などテンプレートエンジンを使ってつぶやくことができます。
 
