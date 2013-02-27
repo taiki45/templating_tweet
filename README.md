@@ -1,7 +1,7 @@
 # mikutter plugin: Templating-tweet
 
 ## About
-テンプレートエンジンを使ってつぶやく mikutter プラグイン
+テンプレートエンジンの mustache を使ってつぶやく mikutter プラグイン
 
 
 ## Configuration
@@ -17,18 +17,17 @@ gem i mikutter_plugin_base
 ```ruby
 gem 'mikutter_plugin_base'
 ```
-と追加して起動時に `bundle exec ruby mikutter.rb` としてください。
+と追加して `bundle` したあと起動時に `bundle exec ruby mikutter.rb` としてください。
 
 あとは mikutter のポストボックスで
 ```mustache
 {{ var_name }}your tweet body{{ another_var_name }}
 ```
-などテンプレートエンジンを使ってつぶやくことができます。
+など mustache を使ってつぶやくことができます。
 
 
 ## Plan
-eRuby だとめんどくさいので他のテンプレートエンジンに対応するつもりです。
-あと、今だと `Env` クラスを直接編集しないとテンプレートエンジンの評価内で使えるメソッド追加できないのでその追加方法もつけます。
+helper メソッドを追加する仕組み整えます。
 
 
 ## Contribution
