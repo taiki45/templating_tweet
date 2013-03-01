@@ -9,13 +9,14 @@
 
 
 ## Usage
-`mikutter_plugin_base` という gem を使っているので
+`mikutter_plugin_base` と `mustache` という gem を使っているので
 ```sh
-gem i mikutter_plugin_base
+gem i mikutter_plugin_base mustache
 ```
 とするか mikutter の `Gemfile` に
 ```ruby
 gem 'mikutter_plugin_base'
+gem 'mustache'
 ```
 と追加して `bundle` したあと起動時に `bundle exec ruby mikutter.rb` としてください。
 
