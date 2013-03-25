@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 require 'yaml'
-require 'mikutter_plugin_base'
 require 'mustache'
 
 module Templating
@@ -22,19 +21,16 @@ module Templating
     end
   end
 
-  class Plugin < Mikutter::PluginBase
-    def run(plugin)
-      path = File.exist?(File.expand_path('../config.yaml', __FILE__)) ? 'config.yaml' : 'sample.yaml'
-      @template = Template.new YAML.load(open(File.expand_path("../#{path}", __FILE__)))
-    end
+  Plugin.create :templating_tweet do
+    path = File.exist?(File.expand_path('../config.yaml', __FILE__)) ? 'config.yaml' : 'sample.yaml'
+    config = YAML.load_file(File.expand_path("../#{path}", __FILE__))
+    template = Template.new(config)
 
-    def filter_gui_postbox_post(box)
+    filter_gui_postbox_post do |box|
       buff = ::Plugin.create(:gtk).widgetof(box).widget_post.buffer
-      @template.template = buff.text
-      buff.text = @template.render
+      template.template = buff.text
+      buff.text = template.render
       [box]
     end
   end
 end
-
-Templating::Plugin.register!
